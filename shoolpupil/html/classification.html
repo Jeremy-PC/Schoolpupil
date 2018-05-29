@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Schoolpupil</title>
+    <link rel="shortcut icon" href="../img/logo.ico" type="image/x-icon">
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <!-- Custom Fonts -->
+    <!--<link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>-->
+    <!--<link href='http://fonts.useso.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>-->
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" type="text/css">
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="../css/animate.min.css" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/creative.css" type="text/css">
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/110119/47280/59fc712df629d80c9c04ae27.css' rel='stylesheet' type='text/css' />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
+    <!--<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
+    <!--[endif]-->
+</head>
+
+<body id="page-top" onLoad="GetSchoolVideoDiv();">
+<!--导航栏-->
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <h1 class="navbar-brand page-scroll" align="center">校瞳</h1>
+        </div>
+
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="index.html">主页</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="otherclassification.html">全国分享</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#" onClick="personalpage('本校分类');">本校分类</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#" onClick="personalpage('个人主页');">个人主页</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact">关于我们</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<section class="bg-primary">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <div class="text-faded">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--热门分享-->
+<br>
+<section id="services_3">
+   <div class="container">
+       <div class="row">
+           <div class="col-lg-12">
+               <h2 class="section-heading text-center">热门分享</h2>
+               <hr class="hr">
+          </div>
+       </div>
+   </div>
+</section>
+<section class="no-padding" id="portfolio_3">
+    <div class="container-fluid">
+        <div class="row no-gutter" id="c_allVideoId">
+
+        </div>
+    </div>
+</section>
+<aside class="bg-dark">
+    <div class="container text-center">
+        <div class="call-to-action">
+            <h2 style="font-family:'CTLiShuSJe2743619b1ae27';">如果想了解更多，请按下面按钮 ！</h2>
+            <a href="#" onClick="GetTypeHtml('校内全部视频');" target="_blank" class="btn btn-default btn-xl wow tada">更多>></a>
+        </div>
+    </div>
+</aside>
+
+<!--生活文娱-->
+<br>
+<section id="services_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="section-heading text-center">生活文娱</h2>
+                <hr class="hr">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="no-padding" id="portfolio_1">
+    <div class="container-fluid">
+        <div class="row no-gutter" id="c_FeelVideoId">
+
+        </div>
+    </div>
+</section>
+<aside class="bg-dark">
+    <div class="container text-center">
+        <div class="call-to-action">
+            <h2 style="font-family:'CTLiShuSJe2743619b1ae27';">如果想了解更多，请按下面按钮 ！</h2>
+            <a href="#" onClick="GetTypeHtml('校内情感分享');" target="_blank" class="btn btn-default btn-xl wow tada">更多>></a>
+        </div>
+    </div>
+</aside>
+
+<!--社团/院系活动-->
+<br>
+<section id="services_2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="section-heading text-center">社团/院系活动</h2>
+                <hr class="hr">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="no-padding" id="portfolio_2">
+    <div class="container-fluid">
+       <div class="row no-gutter" id="c_DailyVideoId">
+
+       </div>
+    </div>
+</section>
+<aside class="bg-dark">
+    <div class="container text-center">
+        <div class="call-to-action">
+            <h2 style="font-family:'CTLiShuSJe2743619b1ae27';">如果想了解更多，请按下面按钮 ！</h2>
+            <a href="#" onClick="GetTypeHtml('校内衣食住行分享');" target="_blank" class="btn btn-default btn-xl wow tada">更多>></a>
+        </div>
+    </div>
+</aside>
+
+<!--名家讲堂-->
+<br>
+<section id="services_4">
+    <div class="container">
+        <div class="row">
+             <div class="col-lg-12">
+                <h2 class="section-heading text-center">名家讲堂</h2>
+                <hr class="hr">
+             </div>
+        </div>
+    </div>
+</section>
+<section class="no-padding" id="portfolio_4">
+      <div class="container-fluid">
+         <div class="row no-gutter" id="c_mienVideoId">
+
+         </div>
+      </div>
+</section>
+<aside class="bg-dark">
+    <div class="container text-center">
+        <div class="call-to-action">
+            <h2 style="font-family:'CTLiShuSJe2743619b1ae27';">如果想了解更多，请按下面按钮 ！</h2>
+            <a href="#" onClick="GetTypeHtml('校园风采视频');" target="_blank" class="btn btn-default btn-xl wow tada">更多>></a>
+        </div>
+    </div>
+</aside>
+
+<!--校园招聘-->
+<br>
+<section id="services_5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="section-heading text-center">校园招聘</h2>
+                <hr class="hr">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="no-padding" id="portfolio_5">
+    <div class="container-fluid">
+        <div class="row no-gutter" id="FengcaiVideoId">
+
+        </div>
+    </div>
+</section>
+<aside class="bg-dark">
+    <div class="container text-center">
+        <div class="call-to-action">
+            <h2 style="font-family:'CTLiShuSJe2743619b1ae27';">如果想了解更多，请按下面按钮 ！</h2>
+            <a href="#" target="_blank" class="btn btn-default btn-xl wow tada">更多>></a>
+        </div>
+    </div>
+</aside>
+
+<!--选课导向-->
+<br>
+<section id="services_6">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="section-heading text-center">选课导向</h2>
+                <hr class="hr">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="no-padding" id="portfolio_6">
+    <div class="container-fluid">
+        <div class="row no-gutter" id="FengcaiVideoId">
+
+        </div>
+    </div>
+</section>
+<aside class="bg-dark">
+    <div class="container text-center">
+        <div class="call-to-action">
+            <h2 style="font-family:'CTLiShuSJe2743619b1ae27';">如果想了解更多，请按下面按钮 ！</h2>
+            <a href="#" target="_blank" class="btn btn-default btn-xl wow tada">更多>></a>
+        </div>
+    </div>
+</aside>
+
+<!--联系我们-->
+<br>
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading" style="font-family: 隶书;">与我们联系</h2>
+                <hr class="primary">
+                <p style="font-family:'CTLiShuSJe2743619b1ae27';">感谢你们能够在百忙之中，打开我们的网站 ！你们的支持，是我们不断前进的动力 ！</p>
+                <p style="font-family:'CTLiShuSJe2743619b1ae27';">所以，如果你们发现我们网站有着如何缺陷，请立即与我们联系！我们会在第一时间回复你，并修复与完善我们的网站 ！</p>
+            </div>
+            <div class="col-lg-4 col-lg-offset-2 text-center">
+                <i class="fa fa-phone fa-3x wow bounceIn"></i>
+                <p>123-456-6789</p>
+            </div>
+            <div class="col-lg-4 text-center">
+                <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
+                <p>Jeremy@163.com</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- jQuery -->
+<script src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/scrolltopcontrol.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="../js/bootstrap.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="../js/jquery.easing.min.js"></script>
+<script src="../js/jquery.fittext.js"></script>
+<script src="../js/wow.min.js"></script>
+<script src="../js/md5.js"></script>
+<script src="../js/jquery.validate.js"></script>
+<script src="../js/jquery.alertable.js"></script>
+<script src='../js/velocity.min.js'></script>
+<script src='../js/velocity.ui.min.js'></script>
+<!-- Custom Theme JavaScript -->
+<script src="../js/creative.js"></script>
+<script src="../js/classification.js"></script>
+</body>
+
+</html>

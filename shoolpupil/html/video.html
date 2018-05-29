@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Jeremy">
+    <title>Schoolpupil</title>
+    <link rel="shortcut icon" href="../img/logo.ico" type="image/x-icon">
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <!-- Custom Fonts -->
+    <!--<link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>-->
+    <!--<link href='http://fonts.useso.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>-->
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" type="text/css">
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="../css/animate.min.css" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/creative.css" type="text/css">
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/110119/47280/59fc712df629d80c9c04ae27.css' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="../css/video.css" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
+    <!--<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
+    <!--[endif]-->
+</head>
+
+<body id="body">
+<!--导航栏-->
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <h1 class="navbar-brand page-scroll" align="center">校瞳</h1>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="javascript:;" id="login" style="display: none;">登录</a>
+                </li>
+                <li>
+                    <a href="javascript:;" class="register" style="display: none;">注册</a>
+                </li>
+                <li>
+                    <a class="page-scroll" id="v_quitLogin" href="javascript:;" onClick="dropOutFuntwo();" style="display: none;">退出登录</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact">关于我们</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<!--视频播放器-->
+<div style="text-align: center;">
+    <div class="video"></div>
+</div>
+<!--浏览量点赞举报区域-->
+<div align="center" style="color: #ffffff;">
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-md-offset-7 col-md-1 col-sm-offset-7 col-sm-1 col-xs-offset-6 col-xs-2">
+                <a href="javascript:;" title="浏览量"><img class="img-responsive center-block" src="../img/icon/WhiteBrowse.png" style="height:30px;width:30px;"></a>
+                <span id="v_browseCnt"></span>
+            </div>
+            <div class="col-md-1 col-sm-1 col-xs-2">
+                <a href="javascript:;" title="点赞" onClick="UserStatus('点赞');"><img id="LikeImg" class="img-responsive center-block" src="../img/icon/WhiteDot.png" style="height:30px;width:30px;"></a>
+                <span id="v_likeCnt"></span>
+            </div>
+            <div class="col-md-1 col-sm-1 col-xs-2">
+                <a href="javascript:;" title="举报" onClick="UserStatus('举报')"><img id="ReportImg" class="img-responsive center-block" src="../img/icon/WhiteReport.png" style="height:30px;width:30px;"></a>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+<!--评论区-->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+            <!--整个评论区-->
+            <div class="commentAll" id="v_commentAll">
+               <!--评论区表单-->
+			  <div class="form-group clearfix">
+				 <textarea class="form-control text" rows="3" id="v_commentdata" placeholder="请输入评论文本内容...."></textarea>
+				 <div class="col-lg-offset-9 col-lg-3 col-md-offset-9 col-md-3 col-sm-offset-8 col-sm-4 col-xs-offset-8 col-xs-4" style="margin-top: 10px;">
+				   <button onClick="sendComment();" class="btn btn-danger btn-block">评论</button>
+				 </div>
+			  </div>
+                <!--评论区-->
+                <div class="comment-show" id="comment_show">
+					
+                </div>
+			</div>
+        </div>
+    </div>
+</div>
+<!--加载图标-->
+<div id="loading" class="loading">加载中.....</div>
+
+
+<!--举报视频弹出框-->
+<div class="modal fade" id="reportModal">
+    <div class="modal-dialog" style="max-width: 450px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="guanbireport" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" align="center" style="color: #F05F40">温馨提醒</h2>
+            </div>
+            <div class="modal-body"  align="center">
+                <strong style="font-size: large;">确定要举报该视频吗？</strong>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3 col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                       <button onClick="v_yesfun();" type="button" class="btn btn-primary btn-block">确定</button>
+                    </div>
+                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                      <button type="button" class="btn btn-info btn-block" data-dismiss="modal">取消</button>
+                   </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--登录表格-->
+<div class="modal fade" id="loginModal">
+    <div class="modal-dialog" style="max-width: 500px;">
+        <div class="modal-content">
+
+            <!--登录表单头部-->
+            <div class="modal-header">
+                <button type="button" class="close" id="guanbi" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h1 class="modal-title" align="center" style="color:#f05f40;">登录</h1>
+            </div>
+
+            <!--登录表格-->
+            <form method="POST" name="form_login" id="form_login" class="form-horizontal" role="form">
+
+                <!--登录表单内容-->
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div id="i_landError" class="alert alert-danger alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+                                    错误！请进行一些更改。
+                                </div>
+                                <div id="i_landRight" class="alert alert-success alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+                                    成功！很好地完成了提交。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
+                                <input type="text" name="user.phoneNumber" id="user.phoneNumber" required placeholder="手机号/账号" onBlur="phone1fun();" autocomplete="off" onFocus="phone1focus();" class="form-control"> 
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
+                                <input type="password" name="user.password" id="user.password" onKeyDown="return downeven(event)" required placeholder="密码" autocomplete="off" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-offset-2 col-lg-8 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-12" id="choice">
+                            <!-- Inline Radios -->
+                            <label class="control-label">
+                                <input name="role" type="radio" checked="checked">
+                                个人
+                            </label>
+                            <!--&nbsp;-->
+                            <label class="control-label">
+                                <input name="role" type="radio">
+                                教师
+                            </label>
+                            &nbsp;
+                            <label class="control-label">
+                                <input name="role" type="radio">
+                                企业
+                            </label>
+                            &nbsp;
+                            <label class="control-label">
+                                <input name="role" type="radio">
+                                社团
+                            </label>
+                            <!--&nbsp;-->
+                            <label class="control-label">
+                                <input name="role" type="radio">
+                                学生会
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!--登录表单底部按钮-->
+                <div class="modal-footer">
+                    <div class="col-md-offset-3 col-lg-offset-3 col-sm-offset-3 col-xs-offset-3 col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                        <button type="button" id="i_login" onclick="loginIn();" class="btn btn-primary btn-block btn-lg">登录</button>
+                    </div>
+                </div>
+
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--个人注册表格-->
+<div class="modal fade" id="registerModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!--注册表单头部-->
+            <div class="modal-header">
+                <button type="button" id="guanbi2" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h1 class="modal-title" align="center" style="color:#f05f40;">个人&nbsp;<b>·</b>&nbsp;注册</h1>
+            </div>
+
+            <!--注册表单-->
+            <form method="POST" name="form_login" id="form_register" class="form-horizontal" role="form">
+
+                <!--注册表单内容-->
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div id="i_registerError" class="alert alert-danger alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+                                    错误！请进行一些更改。
+                                </div>
+                                <div id="i_registerRight" class="alert alert-success alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+                                    成功！很好地完成了提交。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">学校名：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="text" class="form-control" name="user.university" id="user.university" onFocus="schoolfocus();" required placeholder="学校名称" HaoyuSug="77AEFEEEF7C049DFAC173C375494C0BB" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">用户名：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="text" class="form-control" name="user.userName" id="user.userName" onFocus="userfocus()" required placeholder="用户名" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">手机号：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="text" class="form-control" name="user.phoneNumber" id="user.phoneNumber2" onBlur="phonefun();" required placeholder="手机号码" onFocus="phonefocus()" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="password" class="form-control" name="user.password" id="user.password2" required placeholder="密码" onFocus="pass1focus()" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">再输入：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="password" class="form-control" name="two_pass" id="two_pass" required placeholder="再次输入" onFocus="passfocus()" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">验证码：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="text" class="form-control" name="verifyCode" id="verifyCode" required placeholder="验证码" onKeyDown="return registereven(event)" onFocus="codefocus()" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-lg-offset-5 col-lg-2 col-md-offset-5 col-md-2 col-sm-offset-5 col-sm-2 col-xs-offset-5 col-xs-4" style="border: 1px solid #5e5e5e;">
+                                    <img id="imgCheckNo" src="http://120.78.84.78/pupil/user/getVerifyCode"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label onClick="changeImg();" style="cursor:pointer" class="col-lg-offset-5 col-lg-2 col-md-offset-5 col-md-2 col-sm-offset-6 col-sm-3 col-xs-offset-5 col-xs-4">换一张？</label>
+                        </div>
+                    </div>
+                </div>
+                <!--注册表单底部按钮-->
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-offset-3 col-lg-offset-3 col-sm-offset-3 col-xs-offset-3 col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                        <button type="button" id="i_register" onClick="registerIn();" class="btn btn-primary btn-block btn-lg">注册</button>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <!--<div class="row">-->
+                <!--<div class="col-md-offset-3 col-lg-offset-3 col-sm-offset-3 col-xs-offset-3 col-lg-6 col-sm-6 col-md-6 col-xs-6">-->
+                <!--<button type="button" id="i_register" onClick="registerIn();" class="btn btn-primary btn-block btn-lg">注册</button>-->
+                <!--</div>-->
+                <!--</div>-->
+                <div class="row">
+                    <div align="center">
+                        <label class="control-label">
+                            <span style="font-size: large;">其他注册：</span>
+                            <a href="#" style="font-size: large;" class="teacher_register">教师</a>
+                            <b>·</b>
+                            <a href="#" style="font-size: large;" class="enterprise_register">企业</a>
+                            <b>·</b>
+                            <a href="#" style="font-size: large;" class="corporation_register">社团</a>
+                            <b>·</b>
+                            <a href="#" style="font-size: large;" class="union_register">学生会</a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--教师注册表格-->
+<div class="modal fade" id="teacher_registerModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!--注册表单头部-->
+            <div class="modal-header">
+                <button type="button" id="guanbi3" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h1 class="modal-title" align="center" style="color:#f05f40;">教师&nbsp;<b>·</b>&nbsp;注册</h1>
+            </div>
+
+            <!--注册表单-->
+            <form method="POST" name="form_login" id="teacher_form_register" class="form-horizontal" role="form">
+
+                <!--注册表单内容-->
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="alert alert-danger alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+                                    错误！请进行一些更改。
+                                </div>
+                                <div class="alert alert-success alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+                                    成功！很好地完成了提交。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">学校名：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="text" class="form-control" required placeholder="学校名称" HaoyuSug="77AEFEEEF7C049DFAC173C375494C0BB" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">用户名：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="text" class="form-control"required placeholder="用户名" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">手机号：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="text" class="form-control" required placeholder="手机号码" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="password" class="form-control" required placeholder="密码" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;箱：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="password" class="form-control" required placeholder="邮箱" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">教师证：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="file" class="filestyle" data-buttonName="btn-primary" data-buttonText="教师证">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--注册表单底部按钮-->
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-offset-3 col-lg-offset-3 col-sm-offset-3 col-xs-offset-3 col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                        <button type="button" class="btn btn-primary btn-block btn-lg">注册</button>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <div class="row">
+                    <div align="center">
+                        <label class="control-label">
+                            <span style="font-size: large;">其他注册：</span>
+                            <a href="#" style="font-size: large;" class="register">个人</a>
+                            <b>·</b>
+                            <a href="#" style="font-size: large;" class="enterprise_register">企业</a>
+                            <b>·</b>
+                            <a href="#" style="font-size: large;" class="corporation_register">社团</a>
+                            <b>·</b>
+                            <a href="#" style="font-size: large;" class="union_register">学生会</a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--企业注册表格-->
+<div class="modal fade" id="enterprise_registerModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!--注册表单头部-->
+            <div class="modal-header">
+                <button type="button" id="guanbi4" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h1 class="modal-title" align="center" style="color:#f05f40;">企业&nbsp;<b>·</b>&nbsp;注册</h1>
+            </div>
+
+            <!--注册表单-->
+            <form method="POST" name="form_login" id="enterprise_form_register" class="form-horizontal" role="form">
+
+                <!--注册表单内容-->
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="alert alert-danger alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+                                    错误！请进行一些更改。
+                                </div>
+                                <div class="alert alert-success alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+                                    成功！很好地完成了提交。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">企业名：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="text" class="form-control" required placeholder="企业名称" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;箱：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="password" class="form-control" required placeholder="邮箱" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">地&nbsp;&nbsp;&nbsp;&nbsp;址：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="password" class="form-control" required placeholder="地址" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">企业证：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="file" class="filestyle" data-buttonName="btn-primary" data-buttonText="企业证">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--注册表单底部按钮-->
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-offset-3 col-lg-offset-3 col-sm-offset-3 col-xs-offset-3 col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                        <button type="button" class="btn btn-primary btn-block btn-lg">注册</button>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <div class="row">
+                    <div align="center">
+                        <label class="control-label">
+                            <span style="font-size: large;">其他注册：</span>
+                            <a href="#" style="font-size: large;" class="register">个人</a>
+                            <b>·</b>
+                            <a href="#" style="font-size: large;" class="teacher_register">教师</a>
+                            <b>·</b>
+                            <a href="#" style="font-size: large;" class="corporation_register">社团</a>
+                            <b>·</b>
+                            <a href="#" style="font-size: large;" class="union_register">学生会</a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--社团注册表格-->
+<div class="modal fade" id="corporation_registerModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!--注册表单头部-->
+            <div class="modal-header">
+                <button type="button" id="guanbi5" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h1 class="modal-title" align="center" style="color:#f05f40;">社团&nbsp;<b>·</b>&nbsp;注册</h1>
+            </div>
+
+            <!--注册表单-->
+            <form method="POST" name="form_login" id="corporation_form_register" class="form-horizontal" role="form">
+
+                <!--注册表单内容-->
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="alert alert-danger alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+                                    错误！请进行一些更改。
+                                </div>
+                                <div class="alert alert-success alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+                                    成功！很好地完成了提交。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">学校名：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="text" class="form-control" required placeholder="学校名称" HaoyuSug="77AEFEEEF7C049DFAC173C375494C0BB" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">社团名：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="text" class="form-control"required placeholder="社团名" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;箱：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="password" class="form-control" required placeholder="邮箱" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">证&nbsp;&nbsp;&nbsp;&nbsp;明：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="file" class="filestyle" data-buttonName="btn-primary" data-buttonText="社团证明">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--注册表单底部按钮-->
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-offset-3 col-lg-offset-3 col-sm-offset-3 col-xs-offset-3 col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                        <button type="button" class="btn btn-primary btn-block btn-lg">注册</button>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <div class="row">
+                    <div align="center">
+                        <label class="control-label">
+                            <span style="font-size: large;">其他注册：</span>
+                            <a href="#" style="font-size: large;" class="register">个人</a>
+                            <b>·</b>
+                            <a href="#" style="font-size: large;" class="teacher_register">教师</a>
+                            <b>·</b>
+                            <a href="#" style="font-size: large;" class="enterprise_register">企业</a>
+                            <b>·</b>
+                            <a href="#" style="font-size: large;" class="union_register">学生会</a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--学生会注册表格-->
+<div class="modal fade" id="union_registerModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!--注册表单头部-->
+            <div class="modal-header">
+                <button type="button" id="guanbi6" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h1 class="modal-title" align="center" style="color:#f05f40;">学生会&nbsp;<b>·</b>&nbsp;注册</h1>
+            </div>
+
+            <!--注册表单-->
+            <form method="POST" name="form_login" id="union_form_register" class="form-horizontal" role="form">
+
+                <!--注册表单内容-->
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="alert alert-danger alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+                                    错误！请进行一些更改。
+                                </div>
+                                <div class="alert alert-success alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+                                    成功！很好地完成了提交。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">学校名：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="text" class="form-control" required placeholder="学校名称" HaoyuSug="77AEFEEEF7C049DFAC173C375494C0BB" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">学生会：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="text" class="form-control"required placeholder="学生会名称" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;箱：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="password" class="form-control" required placeholder="邮箱" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-offset-1 col-xs-4 control-label">证&nbsp;&nbsp;&nbsp;&nbsp;明：</label>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <input type="file" class="filestyle" data-buttonName="btn-primary" data-buttonText="学生会证明">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--注册表单底部按钮-->
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-offset-3 col-lg-offset-3 col-sm-offset-3 col-xs-offset-3 col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                        <button type="button" class="btn btn-primary btn-block btn-lg">注册</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="modal-footer">
+                <div class="row">
+                    <div align="center">
+                        <label class="control-label">
+                            <span style="font-size: large;">其他注册：</span>
+                            <a href="#" style="font-size: large;" class="register">个人</a>
+                            <b>·</b>
+                            <a href="#" style="font-size: large;" class="teacher_register">教师</a>
+                            <b>·</b>
+                            <a href="#" style="font-size: large;" class="enterprise_register">企业</a>
+                            <b>·</b>
+                            <a href="#" style="font-size: large;" class="corporation_register">社团</a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!--联系我们-->
+<br>
+<section id="contact" style="color: #ffffff;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading" style="font-family:'CTLiShuSJe2743619b1ae27';">与我们联系</h2>
+                <hr class="primary">
+                <p style="font-family:'CTLiShuSJe2743619b1ae27';">感谢你们能够在百忙之中，打开我们的网站 ！你们的支持，是我们不断前进的动力 ！</p>
+                <p style="font-family:'CTLiShuSJe2743619b1ae27';">所以，如果你们发现我们网站有着如何缺陷，请立即与我们联系！我们会在第一时间回复你，并修复与完善我们的网站 ！</p>
+            </div>
+            <div class="col-lg-4 col-lg-offset-2 text-center">
+                <i class="fa fa-phone fa-3x wow bounceIn"></i>
+                <p>123-456-6789</p>
+            </div>
+            <div class="col-lg-4 text-center">
+                <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
+                <p>Jeremy@163.com</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- jQuery -->
+<script src="../js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap-filestyle.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="../js/jquery.easing.min.js"></script>
+<script src="../js/jquery.fittext.js"></script>
+<script src="../js/wow.min.js"></script>
+<script src="../js/md5.js"></script>
+<script src="../js/jquery.validate.js"></script>
+<script type="text/javascript" src="../ckplayer/ckplayer.js" charset="utf-8"></script>
+<script src="../js/jquery.alertable.js"></script>
+<script src='../js/velocity.min.js'></script>
+<script src='../js/velocity.ui.min.js'></script>
+<!-- Custom Theme JavaScript -->
+<script src="../js/creative.js"></script>
+<!--<script src="../js/classification.js"></script>-->
+<script src="../js/video.js"></script>
+</body>
+</html>

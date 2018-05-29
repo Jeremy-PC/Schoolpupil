@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Schoolpupil</title>
+    <link rel="shortcut icon" href="../img/logo.ico" type="image/x-icon">
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <!-- Custom Fonts -->
+    <!--<link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>-->
+    <!--<link href='http://fonts.useso.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>-->
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css" type="text/css">
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="../css/animate.min.css" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/creative.css" type="text/css">
+    <link rel="stylesheet" href="../css/croppie.css" type="text/css">
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/110119/47280/59fc712df629d80c9c04ae27.css' rel='stylesheet' type='text/css' />
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/110119/47383/5a0942d8f629d80d3829ba5e.css' rel='stylesheet' type='text/css' />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
+    <!--<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
+    <!--[endif]-->
+</head>
+
+<body id="page-top" onLoad="personalfun();">
+<!--导航栏-->
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <h1 class="navbar-brand page-scroll" align="center">校瞳</h1>
+        </div>
+
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="index.html">主页</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="otherclassification.html">全国分享</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#" onClick="personalpage('本校分类');">本校分类</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#" onClick="personalpage('个人主页');">个人主页</a>
+                <li>
+                    <a class="page-scroll" href="#" onClick="dropOutFun();">退出登录</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact">关于我们</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<!--个人中心的全部内容-->
+<header>
+    <div class="header-content">
+        <div class="container" id="ps">
+            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+                <!-- ===== 左边的头像与信息导航栏 ===== -->
+                <div class="row w">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <!--个人头像-->
+                        <div style="background-color: #f2f2f2;">
+                              <img class="img-circle img-responsive center-block" src="../img/deflaut.jpg" id="p_faceinfo" alt="">
+                        </div>
+                        <!--左边导航栏-->
+                        <ul class="nav nav-tabs nav-stacked" id="myTab">
+                            <li class="active"><a href="#profile">个人资料</a></li>
+                            <li><a href="#ckportfolio">我的视频</a></li>
+                            <li><a href="#about">头像修改</a></li>
+                            <li><a href="#portfolio">视频上传</a></li>
+                            <li><a href="#contact_1">密码更改</a></li>
+                        </ul>
+                    </div><!-- col-md-4 -->
+
+                    <!-- ===== 右边的个人具体信息栏目 ===== -->
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <div class="tab-content">
+                            <!-- ===== 个人信息修改 ===== -->
+                            <div class="tab-pane active" id="profile">
+                                <h2>个人资料</h2>
+                                <h5>以下是个人信息</h5>
+                                <hr>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label centered"><h4>学&nbsp;校&nbsp;名：</h4></label>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 centered">
+                                            <p style="color: #434343;"><span id="p_schoolname"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label centered"><h4>用&nbsp;户&nbsp;名：</h4></label>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 centered">
+                                           <p style="color: #434343;"><span id="p_username"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label centered"><h4>手&nbsp;机&nbsp;号：</h4></label>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 centered">
+                                           <p style="color: #434343;"><span id="p_phonenum"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--<div class="row">-->
+                                    <!--<div class="form-group">-->
+                                        <!--<label class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label centered"><h4>邮&nbsp;&nbsp;&nbsp;&nbsp;箱：</h4></label>-->
+                                        <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 centered">-->
+                                            <!--<p style="color: #434343;"><span></span></p>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <p><h4><span id="p_password" style="display:none"></span></h4></p>
+                                <hr>
+                                <p>
+                                <div class="col-md-offset-3 col-lg-offset-3 col-lg-6 col-md-6">
+                                    <button class="btn btn-danger btn-block avatar-save"id="change_message">修改信息</button>
+                                </div>
+                                </p>
+                            </div><!-- Tab Profile -->
+
+                            <!-- ===== 我的视频 ===== -->
+                            <div class="tab-pane" id="ckportfolio">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div id="p_delFileError" class="alert alert-danger alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+                                            错误！请进行一些更改。
+                                        </div>
+                                        <div id="p_delFileRight" class="alert alert-success alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+                                            成功！很好地完成了提交。
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" id="m_myVideoId">
+
+                                </div><!-- row -->
+
+                                <div id="loading" class="loading">加载中...</div>
+                            </div><!-- /Tab Portfolio -->
+
+                            <!-- ===== 个人头像修改 ===== -->
+                            <div class="tab-pane" id="about">
+                                <h2>个人头像</h2>
+                                <h5>请在下面选择头像</h5>
+                                <hr>
+                                <div class="row">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div id="p_sendError" class="alert alert-danger alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+											错误！请进行一些更改。
+										</div>
+										<div id="p_sendRight" class="alert alert-success alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+											成功！很好地完成了提交。
+										</div>
+									</div>
+								</div>
+                                <form id= "p_faceimgform">
+                                    <div align="center">
+                                        <a class="btn btn-danger" id="img" style="color: #ffffff;">裁剪图片</a>
+                                        <!--<input type="file" name="picture" id="p_imgfile" class="filestyle" data-buttonName="btn btn-danger" onChange="getpicfun(this)" data-input="false" data-buttonText="选择图片" />-->
+                                    </div>
+                                    <div align="center" id="result" style="margin-top: 5px;">
+                                        <img src="../img/deflaut.jpg" id="p_changeimg"><!--这里的p_changeimg我放到了personal.js的161行-->
+                                    </div>
+                                    <br>
+                                    <hr>
+                                    <div class="col-md-offset-3 col-lg-offset-3 col-lg-6 col-md-6">
+                                        <input type="button" value="上传" id="p_sendImg" class="btn btn-danger btn-block avatar-save" />
+                                    </div>
+                                </form>
+                            </div><!-- tab about -->
+
+                            <!-- ===== 视频上传表单 ===== -->
+                            <div class="tab-pane" id="portfolio">
+                                <h2>视频上传</h2>
+                                <h5>请填写上传表单</h5>
+                                <hr>
+                                <div class="row">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div id="p_sendFileError" class="alert alert-danger alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+											错误！请进行一些更改。
+										</div>
+										<div id="p_sendFileRight" class="alert alert-success alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+											成功！很好地完成了提交。
+										</div>
+									</div>
+								</div>
+                                <form id="p_videoform" enctype="multipart/form-data" class="form-horizontal">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-5 control-label centered"><h4>类&nbsp;&nbsp;别&nbsp;：</h4></label>
+                                            <div class="col-lg-7 col-sm-7 col-md-7 col-xs-12 centered" >
+                                                <span>
+                                                    <select class="form-control" id="p_selecttype" >
+                                                        <option>情感分享</option>
+                                                        <option>校园风采</option>
+                                                        <option>衣食住行</option>
+                                                    </select>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div><!-- row -->
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-5 control-label centered"><h4>标&nbsp;&nbsp;题&nbsp;：</h4></label>
+                                            <div class="col-lg-7 col-sm-7 col-md-7 col-xs-12 centered">
+                                                <input type="text" id="p_videotitle" class="form-control" placeholder="视频标题" autocomplete="off"/>
+                                            </div>
+                                        </div>
+                                    </div><!-- row -->
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-5 control-label centered"><h4>文&nbsp;&nbsp;件&nbsp;：</h4></label>
+                                            <div class="col-lg-7 col-sm-7 col-md-7 col-xs-12 centered" >
+                                                <input type="file" class="filestyle" name="video" id="p_videofile" data-buttonName="btn-danger" data-buttonText="选择视频">
+                                            </div>
+                                        </div>
+                                    </div><!-- row -->
+                                    <!--进度条，一开始不显示的-->
+                                    <div class="progress progress-striped active" style="display: none">
+                                        <div id="progressBar" class="progress-bar progress-bar-info"
+                                             role="progressbar" aria-valuemin="0" aria-valuenow="0"
+                                             aria-valuemax="100" style="width: 0%">
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <p>
+                                    <div class="col-md-offset-3 col-lg-offset-3 col-lg-6 col-md-6">
+                                        <input type="button" id="batchUploadBtn" class="btn btn-danger btn-block avatar-save" value="上传视频"/>
+                                    </div>
+                                    </p>
+                                </form>
+                            </div><!-- /Tab Portfolio -->
+
+                            <!-- ===== 密码更改中心 ===== -->
+                            <div class="tab-pane" id="contact_1">
+                                <h2>密码中心</h2>
+                                <h5>请在下面修改密码</h5>
+                                <hr>
+                                <div class="row">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div id="p_revisePassError" class="alert alert-danger alert-dismissable"  style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+											错误！请进行一些更改。
+										</div>
+										<div id="p_revisePassRight" class="alert alert-success alert-dismissable"  style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+											成功！很好地完成了提交。
+										</div>
+									</div>
+								</div>
+                                <form method="POST" name="modify_password" id="modify_password">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label centered"><h4>旧&nbsp;&nbsp;的&nbsp;：</h4></label>
+                                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 centered">
+                                                <input type="password" class="form-control" name="p_user.password1" id="p_user.password1" required placeholder="旧的密码" autocomplete="off"/>
+                                            </div>
+                                        </div>
+                                    </div><!-- row -->
+                                    <br>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label centered"><h4>新&nbsp;&nbsp;的&nbsp;：</h4></label>
+                                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 centered">
+                                                <input type="password" class="form-control" name="p_user.password" id="p_user.password2" required placeholder="新的密码" autocomplete="off"/>
+                                            </div>
+                                        </div>
+                                    </div><!-- row -->
+                                    <br>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label centered"><h4>再&nbsp;&nbsp;输&nbsp;：</h4></label>
+                                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 centered">
+                                                <input type="password" class="form-control" name="p_user.password3" id="p_user.password3" required placeholder="再次输入" autocomplete="off"/>
+                                            </div>
+                                        </div>
+                                    </div><!-- row -->      
+                                    <hr>
+                                    <p>
+                                    <div class="col-md-offset-3 col-lg-offset-3 col-lg-6 col-md-6">
+                                        <input type="button" class="btn btn-danger btn-block avatar-save" onClick="changepassword();" value="修改密码"/>
+                                    </div>
+                                    </p>
+                                </form>
+                            </div><!-- Tab Contact -->
+                        </div><!-- Tab Content -->
+                    </div><!-- col-md-8 -->
+                </div><!-- row w -->
+            </div><!-- col-lg-10 -->
+        </div><!-- /.container -->
+    </div>
+</header>
+
+<!--图片裁剪模态框-->
+<div class="modal fade" id="imgModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" align="center">个人头像</h3>
+            </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div align="center">
+                        <a class="file-btn btn btn-danger">
+                            <span>选择图片</span>
+                            <input type="file" id="upload" value="选择图片文件" />
+                        </a>
+                        <div id="upload-demo"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="modal-footer">
+                <div class="col-md-offset-3 col-lg-offset-3 col-sm-offset-3 col-xs-offset-3 col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                    <a class="upload-result btn btn-danger btn-block" data-dismiss="modal">裁剪</a>
+                </div>
+                <!--</div>-->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- 信息修改模态框（Modal） -->
+<div class="modal fade" id="messageModal">
+    <div class="modal-dialog" style="max-width: 550px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" align="center">个人信息修改</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div id="p_SetNameError" class="alert alert-danger alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+                        错误！请进行一些更改。
+                    </div>
+                    <div id="p_SetNameRight" class="alert alert-success alert-dismissable" style="padding-top:5px;padding-bottom:5px;display: none;" align="center">
+                        成功！很好地完成了提交。
+                    </div>
+                </div>
+            </div>
+            <form method="POST" name="form_messageModal" id="form_messageModal" class="form-horizontal">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-8 control-label"><h4>用户名：</h4></label>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 centered" style="padding-top: 10px;" >
+                            <input type="text" class="form-control" name="user.userName" id="p_user.userName" required placeholder="用户名" autocomplete="off"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-offset-3 col-lg-offset-3 col-sm-offset-3 col-xs-offset-3 col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                        <!--<button type="button" id="p_guanbi1" class="btn btn-default" data-dismiss="modal">关闭</button>-->
+                        <button type="button" onClick="changename();" class="btn btn-danger btn-block">提交更改</button>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--视频删除模态框-->
+<div class="modal fade" id="delModal">
+	<div class="modal-dialog" style="max-width: 450px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" id="p_guanbi" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h2 class="modal-title" align="center" style="color: #F05F40">温馨提醒</h2>
+			</div>
+            <div class="modal-body"  align="center">
+                  <strong style="font-size: large;">确定要删除该视频吗？</strong>
+            </div>
+			<div class="modal-footer">
+				<div class="row">
+					<div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-2 col-lg-3 col-sm-3 col-md-3 col-xs-4">
+					   <button onClick="p_yesfun();" type="button" class="btn btn-primary btn-block">确定</button>
+					</div>
+					<div class="col-lg-3 col-sm-3 col-md-3 col-xs-4">
+					  <button type="button" class="btn btn-info btn-block" data-dismiss="modal">取消</button>
+				   </div>
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--联系我们-->
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading" style="font-family: 隶书;">与我们联系</h2>
+                <hr class="primary">
+                <p style="font-family:'CTLiShuSJe2743619b1ae27';">感谢你们能够在百忙之中，打开我们的网站 ！你们的支持，是我们不断前进的动力 ！</p>
+                <p style="font-family:'CTLiShuSJe2743619b1ae27';">所以，如果你们发现我们网站有着如何缺陷，请立即与我们联系！我们会在第一时间回复你，并修复与完善我们的网站 ！</p>
+            </div>
+            <div class="col-lg-4 col-lg-offset-2 text-center">
+                <i class="fa fa-phone fa-3x wow bounceIn"></i>
+                <p>123-456-6789</p>
+            </div>
+            <div class="col-lg-4 text-center">
+                <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
+                <p>Jeremy@163.com</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- jQuery -->
+<script src="../js/jquery.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap-filestyle.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="../js/jquery.easing.min.js"></script>
+<script src="../js/jquery.fittext.js"></script>
+<script src="../js/wow.min.js"></script>
+<script src="../js/md5.js"></script>
+<script src="../js/jquery.validate.js"></script>
+<script src="../js/jquery.alertable.js"></script>
+<script src='../js/velocity.min.js'></script>
+<script src='../js/velocity.ui.min.js'></script>
+<script src="../js/croppie.min.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="../js/creative.js"></script>
+<!--<script src="../js/classification.js"></script>-->
+<script src="../js/personal.js"></script>
+</body>
+
+</html>
